@@ -1,24 +1,68 @@
-import logo from './logo.svg';
 import './App.css';
-
+import { Register } from '../src/pages/register/Register'
+import { Home } from '../src/pages/home/Home'
+import { Login } from '../src/pages/login/Login'
+import { CreateProfile } from './pages/createProfile/CreateProfile';
+import { EditProfile } from "./pages/editProfile/EditProfile"
+import { Posts } from "./pages/posts/Posts"
+import { Profile } from "./pages/profile/Profile"
+import { Profiles } from './pages/profiles/Profiles';
+import { Education } from './pages/education/Education';
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from 'react-router-dom';
+import { AuthProvider } from './context/authProvider';
+import { ProfileProvider } from './context/profileProvider'
+import { PrivateRoute } from "./HOC/PrivateRoute"
 function App() {
+  const user = {}
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <ProfileProvider>
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              {/* {user ? <Home /> : <Register />} */}
+              <Register />
+            </Route>
+            <Route path="/login">
+              {/* {user ? <Redirect to="/" /> : <Login />} */}
+              <Login />
+            </Route>
+
+            <Route path="/register">
+              {user ? <Redirect to="/" /> : <Register />}
+            </Route>
+            <Route exact path="/profiles">
+              <Profiles />
+            </Route>
+            <Route exact path='/profile/:id'>
+              <Profile />
+            </Route>
+
+            <PrivateRoute path="/home">
+              <Home />
+            </PrivateRoute>
+            <PrivateRoute path="/createProfile">
+              <CreateProfile />
+            </PrivateRoute>
+            <PrivateRoute path="/editProfile">
+              <EditProfile />
+            </PrivateRoute>
+            <PrivateRoute path="/posts">
+              <Posts />
+            </PrivateRoute>
+            <PrivateRoute path="/education">
+              <Education />
+            </PrivateRoute>
+
+          </Switch>
+        </Router >
+      </ProfileProvider>
+    </AuthProvider>
   );
 }
 

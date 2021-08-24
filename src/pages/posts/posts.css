@@ -1,0 +1,150 @@
+.posts-section {
+  justify-content: center;
+  width: 50%;
+}
+.post-bar {
+  float: left;
+  width: 100%;
+  background-color: #fff;
+  border-left: 1px solid #e4e4e4;
+  border-right: 1px solid #e4e4e4;
+  border-bottom: 1px solid #e4e4e4;
+  margin-bottom: 20px;
+}
+.post_topbar {
+  float: left;
+  width: 100%;
+  position: relative;
+  padding: 20px 20px 15px 20px;
+}
+.usy-dt {
+  float: left;
+}
+.usy-dt img {
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  -o-border-radius: 100px;
+  border-radius: 100px;
+}
+.usy-name {
+  float: left;
+  margin-left: 10px;
+}
+.usy-name h3 {
+  color: #000000;
+  font-size: 16px;
+  text-transform: capitalize;
+  font-weight: 600;
+  margin-bottom: 6px;
+  margin-top: 2px;
+}
+.usy-name span {
+  color: #b2b2b2;
+  font-size: 14px;
+  margin-left: 10px;
+}
+.usy-name img {
+  margin-top: 2px;
+  margin-right: 6px;
+}
+.post_topbar i {
+  /*	position: absolute;
+      top: 20px;
+      right: 5px;
+      color: #b2b2b2;
+      font-size: 30px;
+  */
+}
+
+/* ============== job_descp ============ */
+
+.job_descp {
+  float: left;
+  width: 100%;
+  padding: 0 20px 20px 20px;
+  border-bottom: 1px solid #e5e5e5;
+}
+.job_descp > p {
+  color: #686868;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 20px;
+}
+.job_descp > p a {
+  color: #e44d3a;
+  font-weight: 600;
+}
+
+/* ============= skill-tags =========== */
+
+/* ========== job-status-bar ========== */
+
+.job-status-bar {
+  float: left;
+  width: 100%;
+  padding: 15px 20px;
+}
+.like-com {
+  float: left;
+}
+.like-com li {
+  display: inline-block;
+  margin-right: 15px;
+}
+.like-com li a {
+  color: #b2b2b2;
+  font-size: 14px;
+  float: left;
+  margin-top: 6px;
+  margin-right: 5px;
+}
+.like-com li a:hover {
+  color: #e44d3a;
+}
+.like-com li a.active {
+  color: #e44d3a;
+}
+.like-com li a i {
+  margin-right: 2px;
+  font-size: 17px;
+  position: relative;
+  top: 2px;
+}
+.like-com li span {
+  color: #ffffff;
+  font-size: 13px;
+  width: 30px;
+  height: 30px;
+  background-color: #e44d3a;
+  line-height: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+  border-radius: 30px;
+  float: left;
+  text-align: center;
+  font-weight: 600;
+  margin-left: -25px;
+}
+.like-com li .com {
+  position: relative;
+  top: -5px;
+}
+.like-com li .com img {
+  margin-right: 10px;
+}
+
+.job-status-bar > a {
+  float: right;
+  color: #b2b2b2;
+  font-size: 14px;
+  margin-top: 5px;
+}
+.job-status-bar > a i {
+  font-size: 20px;
+  margin-right: 7px;
+  position: relative;
+  top: 3px;
+}

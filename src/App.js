@@ -19,23 +19,19 @@ import { AuthProvider } from './context/authProvider';
 import { ProfileProvider } from './context/profileProvider'
 import { PrivateRoute } from "./HOC/PrivateRoute"
 function App() {
-  const user = {}
   return (
     <AuthProvider>
       <ProfileProvider>
         <Router>
           <Switch>
             <Route exact path="/">
-              {/* {user ? <Home /> : <Register />} */}
               <Register />
             </Route>
             <Route path="/login">
-              {/* {user ? <Redirect to="/" /> : <Login />} */}
               <Login />
             </Route>
-
             <Route path="/register">
-              {user ? <Redirect to="/" /> : <Register />}
+              <Register />
             </Route>
             <Route exact path="/profiles">
               <Profiles />

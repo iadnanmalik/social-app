@@ -1,37 +1,34 @@
 import React from "react";
 import { useState, Fragment, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { useEducation } from "../../hooks/useEducation";
+import { useExperience } from "../../hooks/useExperience";
 import { Topbar } from "../../components/topbar/TopBar";
-
-export const Education = () => {
+export const Experience = () => {
   const [toggleTo, setToggelTo] = useState(true);
-  const [result, addEducation] = useEducation();
+  const [result, addExperience] = useExperience();
   const [error, setError] = useState();
   const history = useHistory();
 
   const [formData, setFormData] = useState({
-    school: "",
-    degree: "",
-    fieldofstudy: "",
+    title: "",
+    company: "",
+    location: "",
     from: "",
-    current: false,
     to: "",
-    description: "",
+    current: false,
   });
-  const { school, degree, fieldofstudy, from, current, to, description } =
-    formData;
+  const { title, company, location, from, to, current } = formData;
 
   const onChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
+
     setFormData({
       ...formData,
       [name]: value,
     });
   };
   const { success, loading, status } = { ...result };
-
   useEffect(() => {
     if (success) {
       history.push("/home");
@@ -41,55 +38,56 @@ export const Education = () => {
   }, [result]);
   const onSubmit = (e) => {
     e.preventDefault();
-    addEducation({ formData });
+    addExperience({ formData });
     console.log({ formData });
   };
   return (
     <Fragment>
       <Topbar />
       <div class="container  p-3 my-3 border mx-auto">
-        <h1 className="d-flex display-6 justify-content-center">
-          Add Your Education
+        <h1 class="d-flex display-6 justify-content-center">
+          Add An Experience
         </h1>
-        <p className="lead">
-          <i className="fas fa-graduation-cap"></i> Add any school, bootcamp,
-          etc that you have attended
+        <p class="lead">
+          <i class="fas fa-code-branch"></i> Add any developer/programming
+          positions that you have had in the past
         </p>
         <small>* = required field</small>
         <form onSubmit={(e) => onSubmit(e)}>
           <div class="form-outline mb-4">
             <input
               type="text"
-              placeholder="* School or Bootcamp"
-              name="school"
-              class="form-control"
+              placeholder="* Job Title"
+              name="title"
+              class=" d-flex form-control"
               required
-              value={school}
+              value={title}
               onChange={(e) => onChange(e)}
             />
           </div>
           <div class="form-outline mb-4">
             <input
               type="text"
-              placeholder="* Degree or Certificate"
-              name="degree"
+              placeholder="* Company"
+              name="company"
               class="form-control"
               required
-              value={degree}
+              value={company}
               onChange={(e) => onChange(e)}
             />
           </div>
           <div class="form-outline mb-4">
             <input
               type="text"
+              placeholder="Location"
               class="form-control"
-              placeholder="Field Of Study"
-              name="fieldofstudy"
-              value={fieldofstudy}
+              name="location"
+              value={location}
               onChange={(e) => onChange(e)}
             />
           </div>
-          <div class="form-outline mb-4">
+
+          <div className="form-outline mb-4">
             <h4>From Date</h4>
             <input
               type="date"
@@ -99,22 +97,23 @@ export const Education = () => {
               onChange={(e) => onChange(e)}
             />
           </div>
-          <div class="form-outline mb-4">
+          <div className="form-outline mb-4">
             <p>
               <input
                 type="checkbox"
                 name="current"
+                class=""
                 value={current}
                 onChange={(e) => {
                   setFormData({ ...formData, current: !current });
                   setToggelTo(!toggleTo);
                 }}
               />{" "}
-              Current School or Bootcamp
+              Current Company
             </p>
           </div>
-          {toggleTo ? (
-            <div class="form-outline mb-4">
+          {toggleTo && (
+            <div className="form-outline mb-4">
               <h4>To Date</h4>
               <input
                 type="date"
@@ -124,25 +123,14 @@ export const Education = () => {
                 onChange={(e) => onChange(e)}
               />
             </div>
-          ) : null}
-          <div class="form-outline mb-4">
-            <textarea
-              name="description"
-              cols="30"
-              rows="5"
-              class="form-control"
-              placeholder="Program Description"
-              value={description}
-              onChange={(e) => onChange(e)}
-            ></textarea>
-          </div>
+          )}
           {error ? (
             <Fragment>
               <p>{error}</p>
             </Fragment>
           ) : null}
-          <input type="submit" className="btn btn-primary my-1" />
-          <Link className="btn btn-light my-1" to="/home">
+          <input type="submit" className="btn btn-primary btn-lg btn-block" />
+          <Link className="btn btn-light" to="/home">
             Go Back
           </Link>
         </form>

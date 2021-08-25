@@ -112,7 +112,6 @@ export const Register = () => {
               <button className="loginButton" type="submit">
                 Sign Up
               </button>
-              {/* <Link to="/login"> */}
               <div>
                 <Terms>
                   By signing up, I agree to the Privacy Policy <br /> and Terms
@@ -125,8 +124,6 @@ export const Register = () => {
                   </span>
                 </h4>
               </div>
-
-              {/* </Link> */}
             </form>
           </div>
         </div>

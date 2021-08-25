@@ -8,6 +8,7 @@ import { Posts } from "./pages/posts/Posts"
 import { Profile } from "./pages/profile/Profile"
 import { Profiles } from './pages/profiles/Profiles';
 import { Education } from './pages/education/Education';
+import { Experience } from "./pages/experience/Experience";
 import {
   BrowserRouter as Router,
   Redirect,
@@ -57,6 +58,9 @@ function App() {
             </PrivateRoute>
             <PrivateRoute path="/education">
               <Education />
+            </PrivateRoute>
+            <PrivateRoute path="/experience">
+              <Experience />
             </PrivateRoute>
 
           </Switch>

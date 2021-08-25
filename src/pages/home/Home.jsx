@@ -5,16 +5,15 @@ import { withProfile } from "../../HOC/withProfile";
 import { Fragment } from "react/cjs/react.development";
 import { useHistory } from "react-router-dom";
 import { Topbar } from "../../components/topbar/TopBar";
-import { Sidebar } from "../../components/sidebar/Sidebar";
-
+import { EducationDetail } from "../../components/educationDetail/EducationDetail";
+import { ExperienceDetail } from "../../components/experienceDetail/ExperienceDetail";
 import { useProfile } from "../../hooks/useProfileMe";
 
-const HomeComponent = ({ user, setProfileState }) => {
+const HomeComponent = ({ user, setProfileState, profileState }) => {
   const history = useHistory();
   const [result, setProfile] = useProfile();
-  const [error, setError] = useState();
-  const { success, loading, status, profile } = { ...result };
-
+  const { success, loading, profile } = { ...result };
+  const [contextSuccess, setContextSuccess] = useState(false);
   const getCreateProfile = () => {
     history.push("/createProfile");
   };
@@ -25,12 +24,14 @@ const HomeComponent = ({ user, setProfileState }) => {
   const getEducation = () => {
     history.push("/education");
   };
-
+  const getExperience = () => {
+    history.push("/experience");
+  };
   useEffect(() => {
-    if (!success) {
-      setError(status);
-    } else {
+    if (success && !loading) {
       setProfileState(profile);
+    } else if (!success && loading) {
+      setProfileState(false);
     }
   }, [result]);
 
@@ -38,20 +39,29 @@ const HomeComponent = ({ user, setProfileState }) => {
     setProfile();
   }, [setProfile]);
 
+  useEffect(() => {
+    console.log(profileState);
+    if (profileState.status) {
+      setContextSuccess(true);
+    }
+  }, [profileState]);
+
   return (
     <Fragment>
       {loading ? (
         <Fragment>
           <Topbar />
-          <div className="homeContainer">Loading Home...</div>
+
+          <button class="btn btn-primary">
+            <span class="spinner-border spinner-border-sm"></span>
+          </button>
         </Fragment>
       ) : (
         <Fragment>
           <Topbar />
           <div className="homeContainer">
-            {!profile ? (
+            {!contextSuccess ? (
               <Fragment>
-                <Sidebar />
                 <p>Hey {user.name} You Forgot to Add Profile</p>
                 <div className="buttonfeed">
                   <div className="buttonfeedWrapper">
@@ -60,21 +70,41 @@ const HomeComponent = ({ user, setProfileState }) => {
                     </button>
                   </div>
                 </div>
-                {error ? <p>{error}</p> : null}
               </Fragment>
             ) : (
               <Fragment>
-                <Sidebar />
-                <div className="buttonfeed">
-                  <div className="buttonfeedWrapper">
-                    <p>Welcome {user.name}</p>
-                    <button className="loginButton" onClick={getEditProfile}>
-                      Edit Profile
-                    </button>
-                    <button className="loginButton" onClick={getEducation}>
-                      Add Education
-                    </button>
+                <div class="container  p-3 my-3 border mx-auto">
+                  <div className="buttonfeed">
+                    <div className="buttonfeedWrapper">
+                      <p className="d-flex display-6 justify-content-center">
+                        Welcome {user.name}
+                      </p>
+                      <div class="d-flex justify-content-sm-evenly">
+                        <button
+                          className="btn btn-outline-primary"
+                          onClick={getEditProfile}
+                        >
+                          Edit Profile
+                        </button>
+                        <button
+                          className="btn btn-outline-primary"
+                          onClick={getEducation}
+                        >
+                          Add Education
+                        </button>
+                        <button
+                          className="btn btn-outline-primary"
+                          onClick={getExperience}
+                        >
+                          Add Experience
+                        </button>
+                      </div>
+                    </div>
                   </div>
+                  <p class="fs-5 text-primary">Education Details</p>
+                  <EducationDetail educationList={profileState?.education} />
+                  <p class="fs-5 text-primary">Experience Details</p>
+                  <ExperienceDetail experienceList={profileState?.experience} />
                 </div>
               </Fragment>
             )}

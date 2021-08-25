@@ -9,7 +9,7 @@ export const ProfileComponent = ({ user }) => {
   const { id } = useParams();
   console.log(id);
   const [result, setProfileId] = useProfileId();
-  const { profile, success, loading, status } = { ...result };
+  const { profile, success, loading } = { ...result };
 
   useEffect(() => {
     if (loading) {
@@ -36,10 +36,7 @@ export const ProfileComponent = ({ user }) => {
       </Fragment>
       {profile ? (
         <Fragment>
-          {/* <ProfileHeader profile={profile} />
-          <ProfileAbout profile={profile} />
-          <EduExp profile={profile} /> */}
-          <ProfileDetails profile={profile.data} />
+          <ProfileDetails profile={profile} />
         </Fragment>
       ) : null}
     </Fragment>

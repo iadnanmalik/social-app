@@ -1,30 +1,31 @@
 import { useState, useCallback } from 'react'
 import axios from "axios";
 import { setAuth } from "../utils/setAuth"
-export const useCreateProfile = () => {
-    const localToken = localStorage.getItem("token");
+export const useEducation = () => {
 
+    const localToken = localStorage.getItem("token");
     const [result, setResult] = useState({
         success: false,
         loading: true,
         status: null,
     })
-    const createProfile = useCallback(async ({ values }) => {
+    const addEducation = useCallback(async ({ formData }) => {
         setResult({ success: false, loading: true, status: null });
-        const body = JSON.stringify(values);
+        const body = JSON.stringify(formData);
+        console.log(body)
         const config = {
             headers: {
                 "Content-Type": "application/json",
             },
         }; setAuth(localToken)
         try {
-            const res = await axios.post(`/api/profile/me`, body, config);
+            const res = await axios.put(`/api/profile/education`, body, config);
             setResult({ success: true, loading: false, status: res.status });
         } catch (error) {
-            setResult({ success: false, loading: false, status: error?.response.status });
+            setResult({ success: false, loading: false, status: error.response.data });
 
         }
     }, [])
-    return [result, createProfile];
+    return [result, addEducation];
 }
 

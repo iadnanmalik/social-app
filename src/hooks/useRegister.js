@@ -5,7 +5,6 @@ export const useRegister = () => {
     const [result, setResult] = useState()
     const register = async ({ values }) => {
         const body = JSON.stringify(values);
-        // console.log("Body from hook: ", body);
         const config = {
             headers: {
                 "Content-Type": "application/json",

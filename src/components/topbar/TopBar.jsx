@@ -28,13 +28,15 @@ const TopBarComponent = ({ user, setUser }) => {
       </div>
       <div className="topbarRight">
         <div className="topbarLinks">
-          <Link
-            to="/posts"
-            style={{ textDecoration: "none", color: "white" }}
-            className="topbarLink"
-          >
-            <span>Posts</span>
-          </Link>
+          {user.name ? (
+            <Link
+              to="/posts"
+              style={{ textDecoration: "none", color: "white" }}
+              className="topbarLink"
+            >
+              <span>Posts</span>
+            </Link>
+          ) : null}
           <Link
             to="/profiles"
             style={{ textDecoration: "none", color: "white" }}

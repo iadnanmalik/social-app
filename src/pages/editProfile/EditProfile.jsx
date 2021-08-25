@@ -12,8 +12,7 @@ import "./editProfile.css";
 const EditProfileComponent = ({ profileState, setProfileState }) => {
   console.log(profileState);
   const [result, editProfile] = useCreateProfile();
-  const [apiErrors, setApiErrors] = useState("");
-  const { success, loading, status } = { ...result };
+  const { success, status } = { ...result };
 
   const history = useHistory();
 

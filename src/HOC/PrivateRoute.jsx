@@ -26,7 +26,6 @@ const RouteComponent = ({ children, user, setUser, ...rest }) => {
     },
     [setUser]
   );
-  // useEffect(() => {}, []);
   useEffect(() => {
     loadUser(localToken);
   }, [loadUser]);

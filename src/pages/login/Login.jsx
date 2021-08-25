@@ -77,7 +77,7 @@ export const Login = () => {
               {apiErrors ? <Errors>{apiErrors}</Errors> : null}
 
               <button className="loginButton" type="submit">
-                Sign Up
+                Sign In
               </button>
               <div>
                 <h4 className="downLink">

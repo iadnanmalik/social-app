@@ -12,7 +12,7 @@ import "./createProfile.css";
 const CreateProfileComponent = () => {
   const [result, createProfile] = useCreateProfile();
   const history = useHistory();
-  const { success, loading, status } = { ...result };
+  const { success, status } = { ...result };
 
   useEffect(() => {
     if (success) {

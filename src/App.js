@@ -9,6 +9,7 @@ import { Profile } from "./pages/profile/Profile"
 import { Profiles } from './pages/profiles/Profiles';
 import { Education } from './pages/education/Education';
 import { Experience } from "./pages/experience/Experience";
+import { CreatePost } from "./pages/createPost/CreatePost"
 import {
   BrowserRouter as Router,
   Redirect,
@@ -20,6 +21,7 @@ import { ProfileProvider } from './context/profileProvider'
 import { PrivateRoute } from "./HOC/PrivateRoute"
 function App() {
   return (
+
     <AuthProvider>
       <ProfileProvider>
         <Router>
@@ -58,7 +60,9 @@ function App() {
             <PrivateRoute path="/experience">
               <Experience />
             </PrivateRoute>
-
+            <PrivateRoute path="/createPost">
+              <CreatePost />
+            </PrivateRoute>
           </Switch>
         </Router >
       </ProfileProvider>

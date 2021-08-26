@@ -8,15 +8,21 @@ import { withAuth } from "../../HOC/withAuth";
 import { useLike } from "../../hooks/useLike";
 import { Button } from "@material-ui/core";
 import { CommentForm } from "../../components/commentForm/CommentForm";
+import { useHistory } from "react-router";
 import { useDeleteComment } from "../../hooks/useDeleteComment";
+import { useDeletePost } from "../../hooks/useDeletePost";
 const PostsComponent = ({ user, setUser }) => {
   const [result, setAllPosts] = usePosts();
   const [resLikes, setLike] = useLike();
   const [deleteCommentPostId, setDeleteCommentPostId] = useState();
   const [deleteComment, setDeleteComment] = useDeleteComment();
+  const [deletePost, setDeletePost] = useDeletePost();
+  const [deletePostIdState, setDeletePostIdState] = useState();
+
   const { posts, loading } = { ...result };
   const { success } = { ...resLikes };
   const localId = useRef();
+  const history = useHistory();
   const handleLike = (id) => {
     setLike(id);
     localId.current = id;
@@ -24,6 +30,13 @@ const PostsComponent = ({ user, setUser }) => {
   const handleDeleteComment = (postId, commentId) => {
     setDeleteComment(postId, commentId);
     setDeleteCommentPostId(postId);
+  };
+  const handleDeletePost = (postId) => {
+    setDeletePost(postId);
+    setDeletePostIdState(postId);
+  };
+  const handleNewPost = () => {
+    history.push("/createPost");
   };
   useEffect(() => {
     const { success, comments } = { ...deleteComment };
@@ -36,6 +49,19 @@ const PostsComponent = ({ user, setUser }) => {
       setAllPosts(posts);
     }
   }, [deleteComment]);
+
+  useEffect(() => {
+    const { success } = { ...deletePost };
+    if (success) {
+      for (let i = 0; i < posts.length; i++) {
+        if (posts[i]._id === deletePostIdState) {
+          posts.splice(i, 1);
+        }
+      }
+      setAllPosts(posts);
+    }
+    console.log({ ...deletePost });
+  }, [deletePost]);
 
   useEffect(() => {
     setAllPosts();
@@ -59,6 +85,14 @@ const PostsComponent = ({ user, setUser }) => {
       ) : posts ? (
         posts.map((post) => (
           <div className="post_topbar">
+            {post.user === user._id ? (
+              <button
+                class="btn btn-outline-danger btn-rounded btn-sm"
+                onClick={() => handleDeletePost(post._id)}
+              >
+                Delete
+              </button>
+            ) : null}
             <div class="card border-dark mb-3" style={{ maxWidth: "75%" }}>
               <div class="card-body text-dark">
                 <Link to={`/profile/${post.user}`} class="text-center">
@@ -119,6 +153,12 @@ const PostsComponent = ({ user, setUser }) => {
           </div>
         ))
       ) : null}
+      <button
+        class="float btn btn-outline-primary btn-rounded"
+        onClick={handleNewPost}
+      >
+        New Post
+      </button>
     </Fragment>
   );
 };

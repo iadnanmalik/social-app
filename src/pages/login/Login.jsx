@@ -6,6 +6,7 @@ import { FormInput } from "../../components/FormInput";
 import { useLogin } from "../../hooks/useLogin";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { Errors } from "../../styledComponents/usedStyled";
 import { useHistory } from "react-router-dom";
 import { Topbar } from "../../components/topbar/TopBar";
 
@@ -95,11 +96,3 @@ export const Login = () => {
     </Fragment>
   );
 };
-
-const Errors = styled.p`
-  padding: 0 1rem;
-  text-align: center;
-  font-size: 12px;
-  color: red;
-  font-weight: 300;
-`;

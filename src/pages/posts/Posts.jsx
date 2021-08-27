@@ -11,6 +11,7 @@ import { CommentForm } from "../../components/commentForm/CommentForm";
 import { useHistory } from "react-router";
 import { useDeleteComment } from "../../hooks/useDeleteComment";
 import { useDeletePost } from "../../hooks/useDeletePost";
+import { Spinner } from "../../styledComponents/usedStyled";
 const PostsComponent = ({ user, setUser }) => {
   const [result, setAllPosts] = usePosts();
   const [resLikes, setLike] = useLike();
@@ -79,9 +80,11 @@ const PostsComponent = ({ user, setUser }) => {
       <Topbar />
 
       {loading ? (
-        <button class="btn btn-primary">
-          <span class="spinner-border spinner-border-sm"></span>
-        </button>
+        <Spinner>
+          <button class="btn btn-primary">
+            <span class="spinner-border spinner-border-sm"></span>
+          </button>
+        </Spinner>
       ) : posts ? (
         posts.map((post) => (
           <div className="post_topbar">

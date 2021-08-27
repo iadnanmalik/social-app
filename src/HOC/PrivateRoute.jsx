@@ -4,6 +4,8 @@ import { Redirect } from "react-router-dom";
 import { withAuth } from "./withAuth";
 import { useEffect } from "react";
 import { setAuth } from "../utils/setAuth";
+import styled from "styled-components";
+import { Spinner } from "../styledComponents/usedStyled";
 import axios from "axios";
 
 const RouteComponent = ({ children, user, setUser, ...rest }) => {
@@ -33,9 +35,11 @@ const RouteComponent = ({ children, user, setUser, ...rest }) => {
   return (
     <Fragment>
       {isLoading ? (
-        <button class="btn btn-primary">
-          <span class="spinner-border spinner-border-sm"></span>
-        </button>
+        <Spinner>
+          <button class="btn btn-primary">
+            <span class="spinner-border spinner-border-sm"></span>
+          </button>
+        </Spinner>
       ) : (
         <Route {...rest}>
           {user.name ? <> {children}</> : <Redirect to="/" />}

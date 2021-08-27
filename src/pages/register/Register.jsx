@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { Topbar } from "../../components/topbar/TopBar";
+import { Terms, Errors } from "../../styledComponents/usedStyled";
 export const Register = () => {
   const [result, register] = useRegister();
   const [apiErrors, setApiErrors] = useState("");
@@ -131,18 +132,3 @@ export const Register = () => {
     </Fragment>
   );
 };
-
-const Terms = styled.p`
-  padding: 0 1rem;
-  text-align: center;
-  font-size: 10px;
-  color: #808080;
-  font-weight: 300;
-`;
-const Errors = styled.p`
-  padding: 0 1rem;
-  text-align: center;
-  font-size: 12px;
-  color: red;
-  font-weight: 300;
-`;

@@ -3,6 +3,7 @@ import React, { useEffect, Fragment } from "react";
 import { useProfiles } from "../../hooks/useProfiles";
 import { Topbar } from "../../components/topbar/TopBar";
 import { Link } from "react-router-dom";
+import { Spinner } from "../../styledComponents/usedStyled";
 export const Profiles = () => {
   const [result, setAllProfiles] = useProfiles();
 
@@ -17,9 +18,11 @@ export const Profiles = () => {
       <Fragment>
         <Topbar />
         {loading ? (
-          <button class="btn btn-primary">
-            <span class="spinner-border spinner-border-sm"></span>
-          </button>
+          <Spinner>
+            <button class="btn btn-primary">
+              <span class="spinner-border spinner-border-sm"></span>
+            </button>
+          </Spinner>
         ) : (
           <Fragment>
             <h1 class="d-flex display-6 justify-content-center">Community </h1>

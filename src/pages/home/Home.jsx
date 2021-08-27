@@ -8,7 +8,7 @@ import { Topbar } from "../../components/topbar/TopBar";
 import { EducationDetail } from "../../components/educationDetail/EducationDetail";
 import { ExperienceDetail } from "../../components/experienceDetail/ExperienceDetail";
 import { useProfile } from "../../hooks/useProfileMe";
-
+import { Spinner } from "../../styledComponents/usedStyled";
 const HomeComponent = ({ user, setProfileState, profileState }) => {
   const history = useHistory();
   const [result, setProfile] = useProfile();
@@ -51,10 +51,11 @@ const HomeComponent = ({ user, setProfileState, profileState }) => {
       {loading ? (
         <Fragment>
           <Topbar />
-
-          <button class="btn btn-primary">
-            <span class="spinner-border spinner-border-sm"></span>
-          </button>
+          <Spinner>
+            <button class="btn btn-primary">
+              <span class="spinner-border spinner-border-sm"></span>
+            </button>
+          </Spinner>
         </Fragment>
       ) : (
         <Fragment>

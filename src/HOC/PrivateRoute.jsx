@@ -33,7 +33,9 @@ const RouteComponent = ({ children, user, setUser, ...rest }) => {
   return (
     <Fragment>
       {isLoading ? (
-        <p> Loading </p>
+        <button class="btn btn-primary">
+          <span class="spinner-border spinner-border-sm"></span>
+        </button>
       ) : (
         <Route {...rest}>
           {user.name ? <> {children}</> : <Redirect to="/" />}

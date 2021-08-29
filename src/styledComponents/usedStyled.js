@@ -7,7 +7,6 @@ export const Spinner = styled.div`
   top: 50%;
   right: 50%; /* or: left: 50%; */
 `;
-
 export const Terms = styled.p`
   padding: 0 1rem;
   text-align: center;

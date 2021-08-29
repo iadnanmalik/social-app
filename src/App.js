@@ -18,53 +18,57 @@ import {
 } from 'react-router-dom';
 import { AuthProvider } from './context/authProvider';
 import { ProfileProvider } from './context/profileProvider'
+import { PostsProvider } from './context/postsProvider'
 import { PrivateRoute } from "./HOC/PrivateRoute"
+
 function App() {
   return (
 
     <AuthProvider>
       <ProfileProvider>
-        <Router>
-          <Switch>
-            <Route exact path="/">
-              <Register />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/register">
-              <Register />
-            </Route>
-            <Route exact path="/profiles">
-              <Profiles />
-            </Route>
-            <Route exact path='/profile/:id'>
-              <Profile />
-            </Route>
+        <PostsProvider>
+          <Router>
+            <Switch>
+              <Route exact path="/">
+                <Register />
+              </Route>
+              <Route path="/login">
+                <Login />
+              </Route>
+              <Route path="/register">
+                <Register />
+              </Route>
+              <Route exact path="/profiles">
+                <Profiles />
+              </Route>
+              <Route exact path='/profile/:id'>
+                <Profile />
+              </Route>
 
-            <PrivateRoute path="/home">
-              <Home />
-            </PrivateRoute>
-            <PrivateRoute path="/createProfile">
-              <CreateProfile />
-            </PrivateRoute>
-            <PrivateRoute path="/editProfile">
-              <EditProfile />
-            </PrivateRoute>
-            <PrivateRoute path="/posts">
-              <Posts />
-            </PrivateRoute>
-            <PrivateRoute path="/education">
-              <Education />
-            </PrivateRoute>
-            <PrivateRoute path="/experience">
-              <Experience />
-            </PrivateRoute>
-            <PrivateRoute path="/createPost">
-              <CreatePost />
-            </PrivateRoute>
-          </Switch>
-        </Router >
+              <PrivateRoute path="/home">
+                <Home />
+              </PrivateRoute>
+              <PrivateRoute path="/createProfile">
+                <CreateProfile />
+              </PrivateRoute>
+              <PrivateRoute path="/editProfile">
+                <EditProfile />
+              </PrivateRoute>
+              <PrivateRoute path="/posts">
+                <Posts />
+              </PrivateRoute>
+              <PrivateRoute path="/education">
+                <Education />
+              </PrivateRoute>
+              <PrivateRoute path="/experience">
+                <Experience />
+              </PrivateRoute>
+              <PrivateRoute path="/createPost">
+                <CreatePost />
+              </PrivateRoute>
+            </Switch>
+          </Router >
+        </PostsProvider>
       </ProfileProvider>
     </AuthProvider>
   );

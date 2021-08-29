@@ -14,11 +14,7 @@ import { withPosts } from "../../HOC/withPosts";
 const PostsComponent = ({ postsState, setPostsState }) => {
   const [result, setAllPosts] = usePosts();
   const [contextSuccess, setContextSuccess] = useState(false);
-
   const { posts, loading, success } = { ...result };
-
-  console.log("Rendered");
-  console.log(contextSuccess);
   const history = useHistory();
   useEffect(() => {
     if (success && !loading) {
@@ -58,12 +54,7 @@ const PostsComponent = ({ postsState, setPostsState }) => {
       ) : postsState ? (
         postsState?.map((post) => (
           <Fragment>
-            <PostBody post={post} />{" "}
-            <CommentForm
-              id={post._id}
-              setAllPosts={setAllPosts}
-              posts={posts}
-            />
+            <PostBody post={post} /> <CommentForm id={post._id} posts={posts} />
           </Fragment>
         ))
       ) : null}

@@ -14,6 +14,7 @@ export const useDeleteComment = () => {
         try {
             const res = await axios.delete(`/api/posts/comment/${postId}/${commentId}`);
             setResult({ success: true, loading: false, status: res.status, comments: res.data });
+
         } catch (error) {
             setResult({ success: false, loading: false, status: error?.response, comments: null });
 

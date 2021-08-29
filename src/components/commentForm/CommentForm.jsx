@@ -1,13 +1,7 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { useComment } from "../../hooks/useComment";
 import { withPosts } from "../../HOC/withPosts";
-export const CommentFormComponent = ({
-  id,
-  setAllPosts,
-  posts,
-  postsState,
-  setPostsState,
-}) => {
+export const CommentFormComponent = ({ id, posts, setPostsState }) => {
   const [comment, setComment] = useState();
   const [result, setCommentCustom] = useComment();
   const handleSubmit = () => {
@@ -17,12 +11,6 @@ export const CommentFormComponent = ({
   useEffect(() => {
     const { comments, success } = { ...result };
     if (success) {
-      // for (let i = 0; i < posts.length; i++) {
-      //   if (posts[i]._id === id) {
-      //     posts[i].comments = comments;
-      //     console.log(posts);
-      //   }
-      // }
       const tempIndex = posts.findIndex((p) => p._id === id);
       const tempPosts = [
         ...posts.slice(0, tempIndex),

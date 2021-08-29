@@ -1,20 +1,14 @@
 import React, { Fragment, useState, useRef, useEffect } from "react";
 import { withPosts } from "../../HOC/withPosts";
 import { Link } from "react-router-dom";
-import { ThumbUp, Comment, ContactSupportOutlined } from "@material-ui/icons";
-import { CommentForm } from "../commentForm/CommentForm";
-import { usePosts } from "../../hooks/usePosts";
-import { useContext } from "react";
-import { PostsContext } from "../../context/postsContext";
+import { ThumbUp, Comment } from "@material-ui/icons";
 import { useLike } from "../../hooks/useLike";
 import { Button } from "@material-ui/core";
-import { useHistory } from "react-router";
 import { useDeleteComment } from "../../hooks/useDeleteComment";
 import { useDeletePost } from "../../hooks/useDeletePost";
 import { withAuth } from "../../HOC/withAuth";
 const PostBodyComponent = ({ user, post, postsState, setPostsState }) => {
   const [resLikes, setLike] = useLike();
-  const [result, setAllPosts] = usePosts();
   const [deleteCommentPostId, setDeleteCommentPostId] = useState();
   const [deleteComment, setDeleteComment] = useDeleteComment();
   const [deletePost, setDeletePost] = useDeletePost();
@@ -49,8 +43,6 @@ const PostBodyComponent = ({ user, post, postsState, setPostsState }) => {
       ];
       setPostsState(tempPosts);
     }
-
-    //setPostsState("Hey");
   }, [deleteComment]);
 
   useEffect(() => {
@@ -63,8 +55,7 @@ const PostBodyComponent = ({ user, post, postsState, setPostsState }) => {
         ...postsState.slice(0, postIndex),
         ...postsState.slice(postIndex + 1),
       ];
-      console.log("Post Index", postIndex);
-      console.log("Temp Posts:", tempPosts);
+
       setPostsState(tempPosts);
     }
   }, [deletePost]);

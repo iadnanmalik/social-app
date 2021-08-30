@@ -11,18 +11,19 @@ import { PostsContext } from "../../context/postsContext";
 import { Spinner } from "../../styledComponents/usedStyled";
 import { PostBody } from "../../components/postBody/PostBody";
 import { withPosts } from "../../HOC/withPosts";
-const PostsComponent = ({ postsState, setPostsState }) => {
+const PostsComponent = ({
+  postsState,
+  setPostsState,
+  loadingPosts,
+  setLoadingPosts,
+}) => {
   const [result, setAllPosts] = usePosts();
-  const [contextSuccess, setContextSuccess] = useState(false);
   const history = useHistory();
 
   const { posts, loading, success } = result;
   useEffect(() => {
     if (success && !loading) {
       setPostsState(posts);
-    }
-    if (loading) {
-      setContextSuccess(false);
     }
   }, [result]);
 
@@ -31,22 +32,20 @@ const PostsComponent = ({ postsState, setPostsState }) => {
   };
 
   useEffect(() => {
+    console.log("redirected");
+    setLoadingPosts(true);
     setAllPosts();
   }, [setAllPosts]);
 
   useEffect(() => {
-    console.log(postsState);
-    if (postsState.length > 0) {
-      setContextSuccess(true);
-    } else {
-      setContextSuccess(false);
+    if (postsState.length > 0 && success) {
+      setLoadingPosts(false);
     }
   }, [postsState]);
   return (
     <Fragment>
       <Topbar />
-
-      {!contextSuccess ? (
+      {loadingPosts ? (
         <Spinner>
           <button class="btn btn-primary">
             <span class="spinner-border spinner-border-sm"></span>

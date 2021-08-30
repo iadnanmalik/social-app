@@ -6,35 +6,39 @@ import { useEffect } from "react";
 import { setAuth } from "../utils/setAuth";
 import styled from "styled-components";
 import { Spinner } from "../styledComponents/usedStyled";
+import { useGetUser } from "../hooks/useGetUser";
 import axios from "axios";
 
-const RouteComponent = ({ children, user, setUser, ...rest }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const localToken = localStorage.getItem("token");
-  const loadUser = useCallback(
-    async (localToken) => {
-      setAuth(localToken);
-      try {
-        setIsLoading(true);
-        const res = await axios.get(`/api/auth`);
-        const { email, name, avatar, _id } = res.data;
-        console.log(email, name, avatar, _id);
-        setUser({ email, name, avatar, _id });
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error);
-        setIsLoading(false);
-      }
-    },
-    [setUser]
-  );
+const RouteComponent = ({
+  children,
+  user,
+  setUser,
+  loading,
+  setLoading,
+  ...rest
+}) => {
+  const [result, loadUser] = useGetUser();
   useEffect(() => {
-    loadUser(localToken);
+    loadUser();
   }, [loadUser]);
+  const { userData, success } = result;
+
+  useEffect(() => {
+    if (success) {
+      setLoading(true);
+      setUser(userData);
+    }
+  }, [result]);
+
+  useEffect(() => {
+    if (user.name) {
+      setLoading(false);
+    }
+  }, [user]);
 
   return (
     <Fragment>
-      {isLoading ? (
+      {loading ? (
         <Spinner>
           <button class="btn btn-primary">
             <span class="spinner-border spinner-border-sm"></span>

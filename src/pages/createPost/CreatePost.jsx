@@ -18,9 +18,7 @@ export const CreatePost = () => {
     }),
 
     onSubmit: async (values) => {
-      console.log(values);
       createPost({ values });
-      //    history.push("/posts");
     },
   });
   useEffect(() => {

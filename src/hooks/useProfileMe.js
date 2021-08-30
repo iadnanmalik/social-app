@@ -4,7 +4,12 @@ import { setAuth } from "../utils/setAuth"
 export const useProfile = () => {
     const localToken = localStorage.getItem("token");
 
-    const [result, setResult] = useState()
+    const [result, setResult] = useState({
+        success: null,
+        loading: null,
+        status: null,
+        profile: null
+    })
     const setProfile = useCallback(async () => {
         setResult({ success: false, loading: true, status: null, profile: null });
         setAuth(localToken)

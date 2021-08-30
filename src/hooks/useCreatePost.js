@@ -8,7 +8,9 @@ export const useCreatePost = () => {
         success: false,
         loading: true,
         status: null,
+        post: null
     })
+
     const createPost = useCallback(async ({ values }) => {
         setResult({ success: false, loading: true, status: null, post: null });
         const body = JSON.stringify(values);

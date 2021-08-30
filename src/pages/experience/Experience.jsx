@@ -28,8 +28,9 @@ export const Experience = () => {
       [name]: value,
     });
   };
-  const { success, loading, status } = { ...result };
+
   useEffect(() => {
+    const { success, loading, status } = result;
     if (success) {
       history.push("/home");
     } else if (!loading) {
@@ -59,7 +60,7 @@ export const Experience = () => {
               type="text"
               placeholder="* Job Title"
               name="title"
-              class=" d-flex form-control"
+              class="form-control"
               required
               value={title}
               onChange={(e) => onChange(e)}

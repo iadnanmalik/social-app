@@ -14,8 +14,9 @@ import { withPosts } from "../../HOC/withPosts";
 const PostsComponent = ({ postsState, setPostsState }) => {
   const [result, setAllPosts] = usePosts();
   const [contextSuccess, setContextSuccess] = useState(false);
-  const { posts, loading, success } = { ...result };
   const history = useHistory();
+
+  const { posts, loading, success } = result;
   useEffect(() => {
     if (success && !loading) {
       setPostsState(posts);

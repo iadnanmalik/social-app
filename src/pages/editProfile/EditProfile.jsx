@@ -9,14 +9,14 @@ import { useCreateProfile } from "../../hooks/useCreateProfile";
 import { useHistory } from "react-router-dom";
 
 import "./editProfile.css";
-const EditProfileComponent = ({ profileState, setProfileState }) => {
+const EditProfileComponent = ({ profileState }) => {
   console.log(profileState);
   const [result, editProfile] = useCreateProfile();
-  const { success, status } = { ...result };
 
   const history = useHistory();
 
   useEffect(() => {
+    const { success, status } = result;
     if (success) {
       history.push("/home");
     } else {

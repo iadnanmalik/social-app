@@ -3,7 +3,7 @@ import axios from "axios";
 import { setAuth } from "../utils/setAuth"
 export const useComment = () => {
 
-    const [result, setResult] = useState()
+    const [result, setResult] = useState({ success: null, loading: null, status: null, comments: null })
     const localToken = localStorage.getItem("token")
     const setCommentCustom = useCallback(async ({ id, text }) => {
         setAuth(localToken)

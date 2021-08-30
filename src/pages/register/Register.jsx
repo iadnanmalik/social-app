@@ -21,7 +21,7 @@ export const Register = () => {
       localStorage.setItem("token", result.data.token);
       history.push("/home");
     } else {
-      setApiErrors(result?.response.data.errors[0].msg);
+      setApiErrors(result?.response?.data.errors[0].msg);
     }
   }, [result]);
 

@@ -10,7 +10,7 @@ export const Profiles = () => {
   useEffect(() => {
     setAllProfiles();
   }, [setAllProfiles]);
-  const { profiles, loading } = { ...result };
+  const { profiles, loading } = result;
 
   console.log(result);
   return (

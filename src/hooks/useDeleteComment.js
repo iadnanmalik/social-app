@@ -3,10 +3,10 @@ import axios from "axios";
 export const useDeleteComment = () => {
 
     const [result, setResult] = useState({
-        success: false,
-        loading: true,
+        success: null,
+        loading: null,
         status: null,
-
+        comments: null
     })
     const setDeleteComment = useCallback(async (postId, commentId) => {
         setResult({ success: false, loading: true, status: null, comments: null });
@@ -14,7 +14,6 @@ export const useDeleteComment = () => {
         try {
             const res = await axios.delete(`/api/posts/comment/${postId}/${commentId}`);
             setResult({ success: true, loading: false, status: res.status, comments: res.data });
-
         } catch (error) {
             setResult({ success: false, loading: false, status: error?.response, comments: null });
 

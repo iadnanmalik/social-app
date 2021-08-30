@@ -9,7 +9,7 @@ export const CommentFormComponent = ({ id, posts, setPostsState }) => {
   };
 
   useEffect(() => {
-    const { comments, success } = { ...result };
+    const { comments, success } = result;
     if (success) {
       const tempIndex = posts.findIndex((p) => p._id === id);
       const tempPosts = [

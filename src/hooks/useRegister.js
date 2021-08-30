@@ -2,7 +2,7 @@ import { useState } from 'react'
 import axios from "axios";
 export const useRegister = () => {
 
-    const [result, setResult] = useState()
+    const [result, setResult] = useState({ })
     const register = async ({ values }) => {
         const body = JSON.stringify(values);
         const config = {

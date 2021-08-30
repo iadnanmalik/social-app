@@ -3,7 +3,7 @@ import axios from "axios";
 import { setAuth } from "../utils/setAuth"
 export const useLike = () => {
 
-    const [resLikes, setResLikes] = useState()
+    const [resLikes, setResLikes] = useState({ success: null, loading: null, status: null, likes: null })
     const localToken = localStorage.getItem("token")
     const setLike = useCallback(async (id) => {
         setAuth(localToken)

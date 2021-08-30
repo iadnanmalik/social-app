@@ -13,6 +13,8 @@ const PostBodyComponent = ({ user, post, postsState, setPostsState }) => {
   const [deleteComment, setDeleteComment] = useDeleteComment();
   const [deletePost, setDeletePost] = useDeletePost();
   const [deletePostIdState, setDeletePostIdState] = useState();
+  // const [likePostId, setLikePostId] = useState();
+  const localId = useRef();
 
   const handleLike = (id) => {
     setLike(id);
@@ -27,11 +29,8 @@ const PostBodyComponent = ({ user, post, postsState, setPostsState }) => {
     setDeletePostIdState(postId);
   };
 
-  const { success } = { ...resLikes };
-  const localId = useRef();
-
   useEffect(() => {
-    const { success, comments } = { ...deleteComment };
+    const { success, comments } = deleteComment;
     if (success) {
       const postIndex = postsState.findIndex(
         (post) => post._id === deleteCommentPostId
@@ -46,7 +45,7 @@ const PostBodyComponent = ({ user, post, postsState, setPostsState }) => {
   }, [deleteComment]);
 
   useEffect(() => {
-    const { success } = { ...deletePost };
+    const { success } = deletePost;
     if (success) {
       const postIndex = postsState.findIndex(
         (post) => post._id === deletePostIdState
@@ -61,11 +60,21 @@ const PostBodyComponent = ({ user, post, postsState, setPostsState }) => {
   }, [deletePost]);
 
   useEffect(() => {
+    const { success, likes } = resLikes;
+
     if (success) {
-      document.getElementById(localId.current).innerHTML =
-        parseInt(document.getElementById(localId.current).innerHTML) + 1;
+      console.log({ ...resLikes });
+      const postIndex = postsState.findIndex(
+        (post) => post._id === localId.current
+      );
+      const tempPosts = [
+        ...postsState.slice(0, postIndex),
+        { ...postsState[postIndex], likes },
+        ...postsState.slice(postIndex + 1),
+      ];
+      setPostsState(tempPosts);
     }
-  }, [success]);
+  }, [resLikes]);
 
   return (
     <div className="post_topbar">

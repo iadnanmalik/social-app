@@ -10,9 +10,8 @@ const EducationDetailComponent = ({ educationList, setProfileState }) => {
     setDeleteEducation({ id });
   };
   useEffect(() => {
-    console.log({ ...result });
     if (result.success) {
-      const { profile } = { ...result };
+      const { profile } = result;
       setProfileState(profile);
     }
   }, [result]);

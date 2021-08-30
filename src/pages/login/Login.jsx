@@ -21,7 +21,7 @@ export const Login = () => {
       localStorage.setItem("token", result.data.token);
       history.push("/home");
     } else {
-      setApiErrors(result?.response.data[0].msg);
+      setApiErrors(result?.response?.data[0].msg);
     }
   }, [result]);
 
@@ -38,7 +38,7 @@ export const Login = () => {
     }),
 
     onSubmit: async (values) => {
-      login({ values });
+      login(values);
     },
   });
   return (

@@ -9,15 +9,8 @@ export const ProfileComponent = ({ user }) => {
   const { id } = useParams();
   console.log(id);
   const [result, setProfileId] = useProfileId();
-  const { profile, success, loading } = { ...result };
+  const { profile } = result;
 
-  useEffect(() => {
-    if (loading) {
-      console.log(loading);
-    } else {
-      console.log(profile, success);
-    }
-  }, [result]);
   useEffect(() => {
     setProfileId(id);
   }, [setProfileId, id]);

@@ -5,9 +5,10 @@ export const useDeletePost = () => {
 
     const localToken = localStorage.getItem("token");
     const [result, setResult] = useState({
-        success: false,
-        loading: true,
+        success: null,
+        loading: null,
         status: null,
+
     })
 
     const setDeletePost = useCallback(async (postId) => {

@@ -14,7 +14,7 @@ export const ExperienceDetailComponent = ({
   };
   useEffect(() => {
     if (result.success) {
-      const { profile } = { ...result };
+      const { profile } = result;
       setProfileState(profile);
     }
   }, [result]);

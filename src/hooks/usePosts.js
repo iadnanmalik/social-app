@@ -3,7 +3,12 @@ import axios from "axios";
 import { setAuth } from "../utils/setAuth"
 export const usePosts = () => {
 
-    const [result, setResult] = useState()
+    const [result, setResult] = useState({
+        success: null,
+        loading: null,
+        status: null,
+        posts: null
+    })
     const localToken = localStorage.getItem("token")
     const setAllPosts = useCallback(async () => {
         setAuth(localToken)

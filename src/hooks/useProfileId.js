@@ -2,7 +2,12 @@ import { useState, useCallback } from 'react'
 import axios from "axios";
 export const useProfileId = () => {
 
-    const [result, setResult] = useState()
+    const [result, setResult] = useState({
+        success: null,
+        loading: null,
+        status: null,
+        profile: null
+    })
     const setProfileId = useCallback(async (id) => {
         setResult({ success: false, loading: true, status: null, profile: null });
         try {

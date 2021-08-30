@@ -2,8 +2,9 @@ import { useState } from 'react'
 import axios from "axios";
 export const useLogin = () => {
 
-    const [result, setResult] = useState()
-    const login = async ({ values }) => {
+    const [result, setResult] = useState({ })
+    const login = async (values) => {
+        console.log(values)
         const body = JSON.stringify(values);
         const config = {
             headers: {

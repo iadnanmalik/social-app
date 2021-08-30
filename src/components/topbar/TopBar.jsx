@@ -1,11 +1,11 @@
 import "./topbar.css";
-import { Search, Person, Chat, Notifications } from "@material-ui/icons";
+import { Search } from "@material-ui/icons";
 import { Link, useHistory } from "react-router-dom";
 import { withAuth } from "../../HOC/withAuth";
 
 const TopBarComponent = ({ user, setUser }) => {
   const history = useHistory();
-  const handleSubmit = () => {
+  const performLogout = () => {
     localStorage.removeItem("token");
     setUser({});
     history.push("/login");
@@ -44,7 +44,7 @@ const TopBarComponent = ({ user, setUser }) => {
           >
             <span>Community</span>
           </Link>
-          {user.name ? <button onClick={handleSubmit}>Logout</button> : null}
+          {user.name ? <button onClick={performLogout}>Logout</button> : null}
         </div>
       </div>
     </div>

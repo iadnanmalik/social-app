@@ -30,9 +30,9 @@ export const Education = () => {
       [name]: value,
     });
   };
-  const { success, loading, status } = { ...result };
 
   useEffect(() => {
+    const { success, loading, status } = result;
     if (success) {
       history.push("/home");
     } else if (!loading) {

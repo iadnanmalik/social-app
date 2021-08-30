@@ -6,9 +6,10 @@ export const useDeleteEducation = () => {
     const localToken = localStorage.getItem("token");
 
     const [result, setResult] = useState({
-        success: false,
-        loading: true,
+        success: null,
+        loading: null,
         status: null,
+        profile: null
     })
     const setDeleteEducation = useCallback(async ({ id }) => {
         setResult({ success: false, loading: true, status: null, profile: null });

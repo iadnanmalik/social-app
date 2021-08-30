@@ -12,9 +12,9 @@ import "./createProfile.css";
 const CreateProfileComponent = () => {
   const [result, createProfile] = useCreateProfile();
   const history = useHistory();
-  const { success, status } = { ...result };
 
   useEffect(() => {
+    const { success, status } = result;
     if (success) {
       console.log(result.data);
       history.push("/home");

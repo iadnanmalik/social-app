@@ -24,8 +24,7 @@ export const CreatePost = () => {
     },
   });
   useEffect(() => {
-    console.log({ ...result });
-    const { success, loading } = { ...result };
+    const { success, loading } = result;
     if (success) {
       history.push("/posts");
     } else if (!success && !loading) {

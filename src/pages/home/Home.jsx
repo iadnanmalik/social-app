@@ -12,7 +12,7 @@ import { Spinner } from "../../styledComponents/usedStyled";
 const HomeComponent = ({ user, setProfileState, profileState }) => {
   const history = useHistory();
   const [result, setProfile] = useProfile();
-  const { success, loading, profile } = { ...result };
+
   const [contextSuccess, setContextSuccess] = useState(false);
   const getCreateProfile = () => {
     history.push("/createProfile");
@@ -27,6 +27,7 @@ const HomeComponent = ({ user, setProfileState, profileState }) => {
   const getExperience = () => {
     history.push("/experience");
   };
+  const { success, loading, profile } = result;
   useEffect(() => {
     if (success && !loading) {
       setProfileState(profile);

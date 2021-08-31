@@ -3,9 +3,8 @@ import { AuthContext } from './authContext';
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({ });
-    const [loading, setLoading] = useState(true)
     return (
-        <AuthContext.Provider value={{ user, setUser, loading, setLoading }}>
+        <AuthContext.Provider value={{ user, setUser }}>
             {children}
         </AuthContext.Provider>
     );

@@ -19,6 +19,7 @@ export const Login = () => {
     if (result?.data) {
       console.log("Logged In Successfully");
       localStorage.setItem("token", result.data.token);
+      console.log("Here");
       history.push("/home");
     } else {
       setApiErrors(result?.response?.data[0].msg);

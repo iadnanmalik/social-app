@@ -1,13 +1,10 @@
 import React, { useEffect, useState, Fragment, useRef } from "react";
 import "./posts.css";
-import { Link } from "react-router-dom";
 import { Topbar } from "../../components/topbar/TopBar";
 import { usePosts } from "../../hooks/usePosts";
 import { withAuth } from "../../HOC/withAuth";
-import { useContext } from "react";
 import { CommentForm } from "../../components/commentForm/CommentForm";
 import { useHistory } from "react-router";
-import { PostsContext } from "../../context/postsContext";
 import { Spinner } from "../../styledComponents/usedStyled";
 import { PostBody } from "../../components/postBody/PostBody";
 import { withPosts } from "../../HOC/withPosts";

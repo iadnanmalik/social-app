@@ -1,0 +1,31 @@
+.posts-section {
+  justify-content: center;
+  width: 50%;
+}
+.post-bar {
+  float: left;
+  width: 100%;
+  background-color: #fff;
+  border-left: 1px solid #e4e4e4;
+  border-right: 1px solid #e4e4e4;
+  border-bottom: 1px solid #e4e4e4;
+  margin-bottom: 20px;
+}
+.post_topbar {
+  float: left;
+  width: 100%;
+  position: relative;
+  padding: 20px 20px 15px 20px;
+}
+.float {
+  position: fixed;
+
+  bottom: 40px;
+  right: 40px;
+  text-align: center;
+  box-shadow: 2px 2px 3px #999;
+}
+
+.my-float {
+  margin-top: 22px;
+}

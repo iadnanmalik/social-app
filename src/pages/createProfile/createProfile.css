@@ -1,0 +1,12 @@
+.profileBoxLog {
+  height: 100%;
+  padding: 20px;
+  margin: 10px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+small {
+  margin-bottom: 20px;
+}

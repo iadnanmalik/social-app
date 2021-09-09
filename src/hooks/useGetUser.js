@@ -6,7 +6,7 @@ export const useGetUser = () => {
     const localToken = localStorage.getItem("token");
     const [result, setResult] = useState({
         success: false,
-        loading: true,
+        loadingHook: false,
         status: null,
         userData: null
     })
@@ -15,10 +15,10 @@ export const useGetUser = () => {
             setAuth(localToken);
             try {
                 const res = await axios.get(`/api/auth`);
-                setResult({ success: true, loading: false, status: res.status, userData: res.data });
+                setResult({ success: true, loadingHook: true, status: res.status, userData: res.data });
             } catch (error) {
                 console.log(error);
-                setResult({ success: false, loading: false, status: error.response.data, userData: null });
+                setResult({ success: false, loadingHook: true, status: error.response.data, userData: null });
             }
         },
         []
